@@ -33,7 +33,10 @@
                         <tr>
                             <td>{{ $training->id }}</td>
                             <td>{{ $training->title }}</td>
-                            <td>{{ $training->trainer }}</td>
+                            <td>
+                                <a href="{{ route('training:show', $training)}}" class="btn btn-primary">Show</a>
+                            </td>
+                            
                         </tr>  
                         @endforeach
                        </tbody>

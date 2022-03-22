@@ -23,6 +23,15 @@ Auth::routes();
 // Route::get('/trainings/rtbko', 'TrainingController@index')->name('training:vokov');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/trainings', [App\Http\Controllers\TrainingController::class, 'index'])->name('training:index');
+
+Route::get('/trainings', [App\Http\Controllers\TrainingController::class, 'index'])->name('training:index')->middleware('auth');
+
 Route::get('/trainings/create', [App\Http\Controllers\TrainingController::class, 'create'])->name('training:create');
 Route::post('/trainings/create', [App\Http\Controllers\TrainingController::class, 'store'])->name('training:store');
+
+Route::get('/trainings/{training}', [App\Http\Controllers\TrainingController::class, 'show'])->name('training:show');
+
+Route::get('/trainings/{training}/edit', [App\Http\Controllers\TrainingController::class, 'edit'])->name('training:edit');
+Route::post('/trainings/{training}/edit', [App\Http\Controllers\TrainingController::class, 'update'])->name('training:update');
+
+Route::post('/trainings/{training}/delete', [App\Http\Controllers\TrainingController::class, 'delete'])->name('training:delete');
