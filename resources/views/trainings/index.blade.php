@@ -13,7 +13,10 @@
                         <input type="text" name="keyword"
                          class="form-control">
                         <button type="submit"
-                        class="btn btn-primary">Search</button>
+                        class="btn btn-primary"
+                        title="Search Title">
+                        <i class="fa fa-search"></i>
+                    </button>
                     </form>
                 </div>
                 
@@ -21,11 +24,17 @@
 
                 <div class="card-body">
                     
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                    
                     <table class="table table-striped">
                         <thead><tr>
                             <th>Id</th>
                             <th>Title</th>
-                            <th>Trainer</th>
+                            <th>Action</th>
                         </tr></thead>
 
                         <tbody>
@@ -34,7 +43,20 @@
                             <td>{{ $training->id }}</td>
                             <td>{{ $training->title }}</td>
                             <td>
-                                <a href="{{ route('training:show', $training)}}" class="btn btn-primary">Show</a>
+                                <!-- button show -->
+                                <a href="{{ route('training:show', $training)}}" class="btn btn-primary">
+                                    <i class="fa fa-file"></i>
+                                </a>
+ 
+                                <!-- button edit -->
+                                <a href="{{ route('training:edit', $training) }}" class="btn btn-warning">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+
+                                <!-- button delete -->
+                                <a href="{{ route('training:delete', $training) }}" class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td>
                             
                         </tr>  
